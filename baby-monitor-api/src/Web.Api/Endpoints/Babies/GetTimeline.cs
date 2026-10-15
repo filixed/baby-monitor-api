@@ -40,7 +40,7 @@ internal sealed class GetTimeline : IEndpoint
         .WithTags(Tags.Babies)
         .Produces<TimelinePage>()
         .ProducesValidationProblem()
-        .ProducesProblem(StatusCodes.Status404NotFound)
-        .RequireAuthorization();
+        .ProducesProblem(StatusCodes.Status404NotFound);
+        //.RequireAuthorization();
     }
 }

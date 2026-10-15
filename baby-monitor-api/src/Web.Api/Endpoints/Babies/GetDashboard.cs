@@ -10,7 +10,7 @@ internal sealed class GetDashboard : IEndpoint
             Results.Ok(new DashboardResponse(Feedings: 6, Diapers: 5, Sleep: 840, Weight: 4.8)))
         .WithTags(Tags.Babies)
         .Produces<DashboardResponse>()
-        .ProducesProblem(StatusCodes.Status404NotFound)
-        .RequireAuthorization();
+        .ProducesProblem(StatusCodes.Status404NotFound);
+        //.RequireAuthorization();
     }
 }

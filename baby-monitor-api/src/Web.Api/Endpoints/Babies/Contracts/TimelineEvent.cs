@@ -2,20 +2,21 @@ using System.Text.Json.Serialization;
 
 namespace Web.Api.Endpoints.Babies.Contracts;
 
-[JsonDerivedType(typeof(FeedingEvent))]
-[JsonDerivedType(typeof(DiaperEvent))]
-[JsonDerivedType(typeof(SleepEvent))]
-[JsonDerivedType(typeof(WeightEvent))]
-public abstract record TimelineEvent(Guid Id, string Type, DateTimeOffset Timestamp);
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(FeedingEvent), "feeding")]
+[JsonDerivedType(typeof(DiaperEvent),  "diaper")]
+[JsonDerivedType(typeof(SleepEvent),   "sleep")]
+[JsonDerivedType(typeof(WeightEvent),  "weight")]
+public abstract record TimelineEvent(Guid Id, DateTimeOffset Timestamp);
 
 public sealed record FeedingEvent(Guid Id, DateTimeOffset Timestamp, FeedingData Data)
-    : TimelineEvent(Id, "feeding", Timestamp);
+    : TimelineEvent(Id, Timestamp);
 
 public sealed record DiaperEvent(Guid Id, DateTimeOffset Timestamp, DiaperData Data)
-    : TimelineEvent(Id, "diaper", Timestamp);
+    : TimelineEvent(Id, Timestamp);
 
 public sealed record SleepEvent(Guid Id, DateTimeOffset Timestamp, SleepData Data)
-    : TimelineEvent(Id, "sleep", Timestamp);
+    : TimelineEvent(Id, Timestamp);
 
 public sealed record WeightEvent(Guid Id, DateTimeOffset Timestamp, WeightData Data)
-    : TimelineEvent(Id, "weight", Timestamp);
+    : TimelineEvent(Id, Timestamp);

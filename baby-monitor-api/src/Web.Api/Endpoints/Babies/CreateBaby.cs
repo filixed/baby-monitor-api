@@ -14,7 +14,7 @@ internal sealed class CreateBaby : IEndpoint
         })
         .WithTags(Tags.Babies)
         .Produces<CreatedResponse>(StatusCodes.Status201Created)
-        .ProducesValidationProblem()
-        .RequireAuthorization();
+        .ProducesValidationProblem();
+        //.RequireAuthorization();
     }
 }
