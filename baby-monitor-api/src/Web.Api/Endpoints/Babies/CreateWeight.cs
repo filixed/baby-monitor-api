@@ -15,7 +15,7 @@ internal sealed class CreateWeight : IEndpoint
         .WithTags(Tags.Babies)
         .Produces<CreatedResponse>(StatusCodes.Status201Created)
         .ProducesValidationProblem()
-        .ProducesProblem(StatusCodes.Status404NotFound)
-        .RequireAuthorization();
+        .ProducesProblem(StatusCodes.Status404NotFound);
+        //.RequireAuthorization();
     }
 }

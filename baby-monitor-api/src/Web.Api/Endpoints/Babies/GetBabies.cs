@@ -17,7 +17,7 @@ internal sealed class GetBabies : IEndpoint
             return Results.Ok(babies);
         })
         .WithTags(Tags.Babies)
-        .Produces<BabyResponse[]>()
-        .RequireAuthorization();
+        .Produces<BabyResponse[]>();
+        //.RequireAuthorization();
     }
 }
